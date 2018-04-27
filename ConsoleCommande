@@ -1,0 +1,23 @@
+php bin/console doctrine:database:create // créer base de données
+
+php bin/console doctrine:generate:entity // genere une entitée
+
+php bin/console doctrine:schema:update --dump-sql // generer chemin base de données.
+
+php bin/console doctrine:schema:update --force  // execute requete sql
+
+php bin/console doctrine:generate:entities OCPlatformBundle:Advert // genere les methodes (geteur et setteur) de notre entitée
+
+php ../composer.phar update // mettre à jour les dependances installée
+
+php bin/console doctrine:fixtures:load // doctrine fixtures // permet de rajouter du faux contenu sur la bdd
+
+php bin/console doctrine:fixtures:load --append // rajoute du faux contenu en bdd sans purger la bdd
+
+php bin/console cache:clear // vider cache
+
+php bin/console debug:container // entity manager
+
+php bin/console doctrine:generate:form OCPlatformBundle:Category // genere un formulaire
+
+php bin/console fos:user:create // permet de crée des users une fois le bundle fosUserBundle installé

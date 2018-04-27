@@ -1,0 +1,19 @@
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Déposer un commentaire - {{ parent() }}
+{% endblock %}
+
+{% block ocplatform_body %}
+
+  <h2>Déposer un commentaire</h2>
+
+  {{ include("OCPlatformBundle:Advert:form.html.twig") }}
+
+  <p>
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à l'annonce
+    </a>
+  </p>
+
+{% endblock %}

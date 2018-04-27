@@ -1,0 +1,88 @@
+{# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Lecture d'une annonce - {{ parent() }}
+{% endblock %}
+
+{% block ocplatform_body %}
+{% for message in app.session.flashbag.get('notice') %}
+
+  <div class="alert alert-info" role="alert">
+    {{ message }}
+  </div>
+
+{% endfor %}
+{% for message in app.session.flashbag.get('suppression') %}
+
+  <div class="alert alert-danger" role="alert">
+    {{ message }}
+  </div>
+
+{% endfor %}
+
+{% if advert.image is not null %}
+
+<img src="{{ asset(advert.image.webPath) }}" alt="{{ advert.image.alt }}"/>
+
+{% endif %}
+
+  <h2>{{ advert.title }}</h2>
+  <i>Par {{ advert.author }}, le {{ advert.date|date('d/m/Y') }} à {{ advert.date|date('H:i:s', 'Europe/Paris') }}</i><br>
+  {% if advert.updatedAt != null  %}
+  <i>Mise à jour le {{ advert.updatedAt|date('d/m/Y') }} à {{ advert.updatedAt|date('H:i:s', 'Europe/Paris') }}</i>
+  {% endif %}
+  <div class="well">
+    {% autoescape false  %} {{ advert.content }} {% endautoescape %}
+  </div>
+  {% if not advert.categories.empty %}
+  <p>
+    Cette annonce est parue dans les catégories suivantes :
+    {% for category in advert.categories %}
+      {{ category.name }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  </p>
+  {% endif %}
+  {% if not advert.skill.empty %}
+  <div>
+    Cette annonce requiert les compétences suivantes :
+    <ul>
+      {% for advertSkill in advert.skill %}
+        <li>{{ advertSkill.name }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  <p>
+    <a href="{{ path('oc_platform_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste
+    </a>
+    {% if  app.user.username is defined and app.user.username is same as (advert.author) %}
+    <a href="{{ path('oc_platform_edit', {'id': advert.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier l'annonce
+    </a>
+    <a href="{{ path('oc_platform_delete', {'id': advert.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer l'annonce
+    </a>
+    {% else %}
+    <a href="{{ path('oc_platform_application', {'id': advert.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-comment"></i>
+      Postuler à l'annonce
+    </a>
+    {% endif %}
+  </p>
+  <h3>Postulant à cette offre</h3>
+  {% for Application in listApplications %}
+  <i>{{ Application.author }}, le {{ Application.date|date('d/m/Y') }}</i>
+  <div class="well">
+    {% autoescape false  %}{{Application.content}}{% endautoescape %}
+
+  </div>
+  {% else %}
+      <p>Pas de postulant pour cette annonce.</p>
+  {% endfor %}
+{% endblock %}
