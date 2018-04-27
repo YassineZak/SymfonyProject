@@ -20,15 +20,16 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new OC\UserBundle\OCUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Stinger\CKEditorOffice2013SkinBundle\StingerCKEditorOffice2013SkinBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new \Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Sonata\AdminBundle\SonataAdminBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new Sonata\FormatterBundle\SonataFormatterBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
@@ -36,6 +37,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
+            $bundles[] = new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle();
 
             if ('dev' === $this->getEnvironment()) {
                 $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

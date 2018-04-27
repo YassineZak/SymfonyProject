@@ -187,4 +187,12 @@ class Image
       $this->alt = null;
     }
   }
+  /**
+   * toString
+   * @return string
+   */
+  public function __toString()
+  {
+          return $this->getUrl();
+  }
 }

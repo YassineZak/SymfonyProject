@@ -5,7 +5,6 @@ namespace OC\PlatformBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ApplicationType extends AbstractType
@@ -15,8 +14,7 @@ class ApplicationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('content',  CKEditorType::class);
-        $builder->add('save',      SubmitType::class);
+        $builder->add('author')->add('content')->add('date')->add('post',  SubmitType::class);
     }/**
      * {@inheritdoc}
      */

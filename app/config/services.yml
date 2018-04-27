@@ -13,10 +13,3 @@ services:
         # this means you cannot fetch services directly from the container via $container->get()
         # if you need to do this, you can override this setting on individual services
         public: false
-
-    admin.advert:
-        class: OC\AdminBundle\Admin\AdvertAdmin
-        arguments: [~, OC\PlatformBundle\Entity\Advert, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: Advert }
-        public: true

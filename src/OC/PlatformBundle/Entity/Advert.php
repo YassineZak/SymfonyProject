@@ -60,6 +60,13 @@ class Advert
      */
     private $content;
 
+
+    /**
+     *
+     * @ORM\Column(name="salary", type="integer")
+     */
+    private $number;
+
     /**
      * @Assert\Email(
      *     message = "le mail '{{ value }}' n'est pas au bon format.",
@@ -502,5 +509,35 @@ class Advert
     }
 
 
+    /**
+     * Set number.
+     *
+     * @param int $number
+     *
+     * @return Advert
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
 
+        return $this;
+    }
+
+    /**
+     * Get number.
+     *
+     * @return int
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+    /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+            return (string) $this->getTitle();
+    }
 }

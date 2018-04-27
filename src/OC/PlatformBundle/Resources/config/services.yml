@@ -33,3 +33,33 @@ services:
           - "2018-06-28"
         tags:
           - { name: kernel.event_listener, event: kernel.response, method: processBeta }
+
+    admin.Advert:
+        class: OC\PlatformBundle\Admin\AdvertAdmin
+        arguments: [~, OC\PlatformBundle\Entity\Advert, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Advert }
+
+    admin.Image:
+        class: OC\PlatformBundle\Admin\ImageAdmin
+        arguments: [~, OC\PlatformBundle\Entity\Image, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Image }
+
+    admin.Skill:
+        class: OC\PlatformBundle\Admin\SkillAdmin
+        arguments: [~, OC\PlatformBundle\Entity\Skill, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Skill }
+
+    admin.Category:
+        class: OC\PlatformBundle\Admin\CategoryAdmin
+        arguments: [~, OC\PlatformBundle\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Category }
+
+    admin.Application:
+        class: OC\PlatformBundle\Admin\ApplicationAdmin
+        arguments: [~, OC\PlatformBundle\Entity\Application, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Application }

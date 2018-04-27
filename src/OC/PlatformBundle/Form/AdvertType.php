@@ -1,7 +1,5 @@
 <?php
-
 namespace OC\PlatformBundle\Form;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -15,7 +13,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
-
 class AdvertType extends AbstractType
 {
     /**
@@ -50,7 +47,6 @@ $builder->addEventListener(
   function(FormEvent $event) { // 2e argument : La fonction à exécuter lorsque l'évènement est déclenché
     // On récupère notre objet Advert sous-jacent
     $advert = $event->getData();
-
     // Cette condition est importante, on en reparle plus loin
     if (null === $advert) {
       return; // On sort de la fonction sans rien faire lorsque $advert vaut null
@@ -66,7 +62,6 @@ $builder->addEventListener(
             'data_class' => 'OC\PlatformBundle\Entity\Advert'
         ));
     }
-
     /**
      * {@inheritdoc}
      */
@@ -74,6 +69,4 @@ $builder->addEventListener(
     {
         return 'oc_platformbundle_advert';
     }
-
-
 }

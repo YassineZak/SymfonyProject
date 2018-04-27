@@ -25,7 +25,7 @@ class Skill
 
 
   /**
- * @ORM\ManyToMany(targetEntity="OC\PlatformBundle\Entity\advert", inversedBy="skill", cascade={"persist"})
+ * @ORM\ManyToMany(targetEntity="OC\PlatformBundle\Entity\Advert", inversedBy="skill", cascade={"persist"})
  */
   private $advert;
 
@@ -54,11 +54,11 @@ class Skill
     /**
      * Add advert.
      *
-     * @param \OC\PlatformBundle\Entity\advert $advert
+     * @param \OC\PlatformBundle\Entity\Advert $advert
      *
      * @return Skill
      */
-    public function addAdvert(\OC\PlatformBundle\Entity\advert $advert)
+    public function addAdvert(\OC\PlatformBundle\Entity\Advert $advert)
     {
         $this->advert[] = $advert;
 
@@ -68,11 +68,11 @@ class Skill
     /**
      * Remove advert.
      *
-     * @param \OC\PlatformBundle\Entity\advert $advert
+     * @param \OC\PlatformBundle\Entity\Advert $advert
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeAdvert(\OC\PlatformBundle\Entity\advert $advert)
+    public function removeAdvert(\OC\PlatformBundle\Entity\Advert $advert)
     {
         return $this->advert->removeElement($advert);
     }
@@ -85,5 +85,13 @@ class Skill
     public function getAdvert()
     {
         return $this->advert;
+    }
+    /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+            return (string) $this->getName();
     }
 }

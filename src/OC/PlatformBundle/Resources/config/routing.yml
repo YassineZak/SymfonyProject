@@ -1,7 +1,6 @@
 
     # src/OC/PlatformBundle/Resources/config/routing.yml
 
-
 oc_platform_home:
 
     path:      /{page}
@@ -48,7 +47,7 @@ oc_platform_purge:
         id: \d+
 
 oc_platform_application:
-    path:    /comment/{id}
+    path:      /comment/{id}
     defaults:
         _controller: OCPlatformBundle:Advert:comment
     requirements:

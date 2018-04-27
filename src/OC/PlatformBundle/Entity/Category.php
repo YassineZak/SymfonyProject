@@ -62,12 +62,12 @@ class Category
     {
         return $this->name;
     }
-
     /**
      * toString
      * @return string
      */
-     public function __toString(){
-       return $this->getName();
-     }
+    public function __toString()
+    {
+            return (string) $this->getName();
+    }
 }
