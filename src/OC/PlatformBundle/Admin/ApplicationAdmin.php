@@ -13,10 +13,14 @@ use OC\PlatformBundle\Entity\Skil;
 use Sonata\AdminBundle\Form\Type\ModelAutocompleteType;
 use OC\PlatformBundle\Entity\Image;
 use Sonata\AdminBundle\Form\Type\AdminType;
-
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class ApplicationAdmin extends AbstractAdmin
 {
+  protected function configureRoutes(RouteCollection $collection)
+  {
+      $collection->remove('create');
+  }
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
