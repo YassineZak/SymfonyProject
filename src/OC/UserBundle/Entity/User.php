@@ -4,6 +4,7 @@ namespace OC\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
@@ -23,11 +24,30 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="OC\UserBundle\Entity\AdminGroup")
-     * @ORM\JoinTable(name="fos_user_user_group",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
-     * )
+     * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\Advert", mappedBy="user")
      */
-    protected $groups;
+    private $adverts;
+
+    public function __construct()
+  {
+    $this->adverts = new ArrayCollection();
+    // ...
+  }
+
+  public function addAdvert(Advert $advert)
+  {
+    $this->adverts[] = $advert;
+    $advert->setUser($this);
+    return $this
+  }
+
+  public function removeAdvert(Advert $advert)
+  {
+    $this->adverts->removeElement($advert);
+  }
+
+  public function getAdverts()
+  {
+    return $this->adverts;
+  }
 }

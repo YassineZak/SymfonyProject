@@ -122,6 +122,36 @@ class Advert
    */
     private $applications; // Notez le « s », une annonce est liée à plusieurs candidatures
 
+    /**
+   * @ORM\ManyToOne(targetEntity="OC\UserBundle\Entity\User", inversedBy="advert")
+   * @ORM\JoinColumn(nullable=false)
+   */
+    private $user;
+
+    /**
+     * Set user
+     *
+     * @param \OC\UserBundle\Entity\User $user
+     *
+     * @return Advert
+     */
+    public function setAdvert(\OC\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \OC\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
     public function increaseApplication()
     {
       $this->nbApplications++;
