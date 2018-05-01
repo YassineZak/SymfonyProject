@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormEvent;
@@ -39,6 +40,7 @@ class AdvertType extends AbstractType
         'choice_label' => 'name',
         'multiple'     => true,
         'expanded'     => true,))
+    ->add('number',    IntegerType::class)
     ->add('published', CheckboxType::class, array('required' => false))
     ->add('save',      SubmitType::class);
     // On ajoute une fonction qui va écouter un évènement

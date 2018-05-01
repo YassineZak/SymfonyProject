@@ -40,7 +40,7 @@
             <li>
               <a href="{{ path('oc_corebundle_home') }}">Accueil</a>
             </li>
-            {% if is_granted('ROLE_AUTEUR') %}
+            {% if is_granted('ROLE_USER') %}
               <li>
                 <a href="{{ path('oc_platform_add') }}">Ajouter une annonce</a>
               </li>
