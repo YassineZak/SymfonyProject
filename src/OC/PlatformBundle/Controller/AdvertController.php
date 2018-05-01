@@ -58,7 +58,7 @@ class AdvertController extends Controller
     ));
   }
     /**
-     * @Security("has_role('ROLE_AUTEUR')")
+     * @Security("has_role('ROLE_USER')")
      */
    public function addAction(Request $request)
    {

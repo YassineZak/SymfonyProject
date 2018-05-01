@@ -23,6 +23,7 @@ class User extends BaseUser
      */
     protected $id;
 
+<<<<<<< HEAD
     /**
      * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\Advert", mappedBy="user")
      */
@@ -50,4 +51,7 @@ class User extends BaseUser
   {
     return $this->adverts;
   }
+=======
+    
+>>>>>>> dev-environment
 }
