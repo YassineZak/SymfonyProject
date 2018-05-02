@@ -23,35 +23,5 @@ class User extends BaseUser
      */
     protected $id;
 
-<<<<<<< HEAD
-    /**
-     * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\Advert", mappedBy="user")
-     */
-    private $adverts;
 
-    public function __construct()
-  {
-    $this->adverts = new ArrayCollection();
-    // ...
-  }
-
-  public function addAdvert(Advert $advert)
-  {
-    $this->adverts[] = $advert;
-    $advert->setUser($this);
-    return $this
-  }
-
-  public function removeAdvert(Advert $advert)
-  {
-    $this->adverts->removeElement($advert);
-  }
-
-  public function getAdverts()
-  {
-    return $this->adverts;
-  }
-=======
-    
->>>>>>> dev-environment
 }
