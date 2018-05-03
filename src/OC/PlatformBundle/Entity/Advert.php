@@ -297,6 +297,7 @@ class Advert
         $this->categories[] = $category;
 
         return $this;
+        
     }
 
     /**
