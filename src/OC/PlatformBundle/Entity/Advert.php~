@@ -46,6 +46,13 @@ class Advert
 
     /**
      * @var string
+     * @Assert\Length(min=2, minMessage="Le titre doit faire au moins {{ limit }} caractères.")
+     * @ORM\Column(name="author", type="string", length=255)
+     */
+    private $author;
+
+    /**
+     * @var string
      *
      * @Assert\NotBlank(message ="le champ contenu est vide")
      * @ORM\Column(name="content", type="text")
@@ -187,7 +194,29 @@ class Advert
         return $this->title;
     }
 
+    /**
+     * Set author
+     *
+     * @param string $author
+     *
+     * @return Advert
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
 
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return string
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 
     /**
      * Set content
@@ -517,28 +546,4 @@ class Advert
     }
 
 
-
-    /**
-     * Set user.
-     *
-     * @param \Application\Sonata\UserBundle\Entity\User|null $user
-     *
-     * @return Advert
-     */
-    public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user.
-     *
-     * @return \Application\Sonata\UserBundle\Entity\User|null
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 }

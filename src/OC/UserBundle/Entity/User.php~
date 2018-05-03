@@ -7,7 +7,6 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
-use FOS\UserBundle\Model\User as BaseUser1;
 
 /**
  * User
@@ -15,7 +14,7 @@ use FOS\UserBundle\Model\User as BaseUser1;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="OC\UserBundle\Repository\UserRepository")
  */
-class User extends BaseUser1
+class User extends BaseUser
 {
     /**
      * @var int
@@ -26,7 +25,12 @@ class User extends BaseUser1
      */
     protected $id;
 
-
-
+    /**
+     * @var string
+     * @Assert\Length(min=5)
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $name;
+    
 
 }
