@@ -7,6 +7,7 @@ use OC\PlatformBundle\Entity\Image;
 use OC\PlatformBundle\Entity\Category;
 use OC\PlatformBundle\Entity\AdvertSkill;
 use OC\PlatformBundle\Entity\Skill;
+use OC\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -63,10 +64,10 @@ class AdvertController extends Controller
    public function addAction(Request $request)
    {
      $advert = new Advert();
-     $user =$this->container->get('security.token_storage')->getToken()->getUsername();
-     $advert->setAuthor($user);
+     $user = $this->container->get('security.token_storage')->getToken()->getUser();
      $form   = $this->get('form.factory')->create(AdvertType::class, $advert);
      if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+       $advert->setUser($user);
        $em = $this->getDoctrine()->getManager();
        $em->persist($advert);
        $em->flush();
@@ -82,9 +83,9 @@ class AdvertController extends Controller
     $form   = $this->get('form.factory')->create(AdvertEditType::class, $advert);
     $em = $this->getDoctrine()->getManager();
     $em->persist($advert);
-    $author = $advert->getAuthor();
+    $author =$advert->getUser()->getUsername();
     $user =$this->container->get('security.token_storage')->getToken()->getUsername();
-    if ($advert->autor !== $user ) {
+    if ($author !== $user ) {
       return $this->redirectToRoute('oc_platform_home');
     }
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
@@ -144,7 +145,7 @@ class AdvertController extends Controller
     throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
   }
   $user =$this->container->get('security.token_storage')->getToken()->getUsername();
-  if ($user === $advert->getAuthor()) {
+  if ($user === $advert->getUser()->getUsername()) {
     return $this->redirectToRoute('oc_platform_home');
   }
   elseif ($user == 'anon.') {

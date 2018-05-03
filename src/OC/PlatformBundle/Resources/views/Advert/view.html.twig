@@ -29,7 +29,7 @@
 {% endif %}
 
   <h2>{{ advert.title }}</h2>
-  <i>Par {{ advert.author }}, le {{ advert.date|date('d/m/Y') }} à {{ advert.date|date('H:i:s', 'Europe/Paris') }}</i><br>
+  <i>Par {{ advert.user.username }}, le {{ advert.date|date('d/m/Y') }} à {{ advert.date|date('H:i:s', 'Europe/Paris') }}</i><br>
   {% if advert.updatedAt != null  %}
   <i>Mise à jour le {{ advert.updatedAt|date('d/m/Y') }} à {{ advert.updatedAt|date('H:i:s', 'Europe/Paris') }}</i>
   {% endif %}
@@ -59,7 +59,7 @@
       <i class="glyphicon glyphicon-chevron-left"></i>
       Retour à la liste
     </a>
-    {% if  app.user.username is defined and app.user.username is same as (advert.author) %}
+    {% if  app.user.username is defined and app.user.username is same as (advert.user.username) %}
     <a href="{{ path('oc_platform_edit', {'id': advert.id}) }}" class="btn btn-default">
       <i class="glyphicon glyphicon-edit"></i>
       Modifier l'annonce
