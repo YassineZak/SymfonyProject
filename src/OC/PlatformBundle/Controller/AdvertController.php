@@ -46,7 +46,6 @@ class AdvertController extends Controller
   }
   public function viewAction(Advert $advert)
   {
-    // On récupère la liste des candidatures de cette annonce
     $listApplications = $this
     ->getDoctrine()
     ->getManager()

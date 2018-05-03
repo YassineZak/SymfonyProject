@@ -22,11 +22,6 @@ class AdvertType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
       $builder
-    ->add('date',      DateTimeType::class,
-    [ 'widget' => 'single_text',
-      'attr' => ['class' => 'datepicker'],
-      'format' =>'dd/MM/yyyy',
-      'html5' => false,])
     ->add('title',     TextType::class)
     ->add('email',    EmailType::class)
     ->add('content',  CKEditorType::class)
