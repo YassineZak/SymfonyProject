@@ -117,6 +117,8 @@ sonata_block:
 sonata_admin:
     templates:
         layout:  SonataAdminBundle::layout.html.twig
+    assets:
+        extra_stylesheets: ['css/stylePerso.css']
 
 sonata_formatter:
     default_formatter: text
