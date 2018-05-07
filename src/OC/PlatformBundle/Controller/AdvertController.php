@@ -7,6 +7,7 @@ use OC\PlatformBundle\Entity\Image;
 use OC\PlatformBundle\Entity\Category;
 use OC\PlatformBundle\Entity\AdvertSkill;
 use OC\PlatformBundle\Entity\Skill;
+use OC\PlatformBundle\Entity\Contact;
 use OC\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,7 @@ use OC\PlatformBundle\Form\AdvertType;
 use OC\PlatformBundle\Form\AdvertEditType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use OC\PlatformBundle\Form\ApplicationType;
+use OC\PlatformBundle\Form\ContactType;
 class AdvertController extends Controller
 {
   public function indexAction($page)
@@ -163,5 +165,24 @@ class AdvertController extends Controller
 return $this->render('OCPlatformBundle:Advert:comment.html.twig', array(
   'form' => $form->createView(),
 ));
+}
+
+public function contactAction(Request $request){
+  $contact = new Contact();
+  $form   = $this->get('form.factory')->create(ContactType::class, $contact);
+  if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+  $em = $this->getDoctrine()->getManager();
+  $em->persist($contact);
+  $em->flush();
+  dump($contact);
+  die;
+  $request->getSession()->getFlashBag()->add('alert', "Votre message a bien été transmit");
+  return $this->redirectToRoute('oc_platform_home');
+  }
+  else {
+    return $this->render('OCPlatformBundle:Advert:ContactForm.html.twig', array(
+      'form' => $form->createView(),
+    ));
+  }
 }
   }
