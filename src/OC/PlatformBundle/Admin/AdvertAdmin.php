@@ -13,6 +13,7 @@ use OC\PlatformBundle\Entity\Skil;
 use Sonata\AdminBundle\Form\Type\ModelAutocompleteType;
 use OC\PlatformBundle\Entity\Image;
 use Sonata\AdminBundle\Form\Type\AdminType;
+use Application\Sonata\UserBundle\Entity\User;
 
 
 class AdvertAdmin extends AbstractAdmin
@@ -22,9 +23,12 @@ class AdvertAdmin extends AbstractAdmin
         $formMapper
         ->add('title', 'text')
         ->add('date', 'datetime')
-        ->add('author',    'text')
+        ->add('user', EntityType::class, array(
+          'class'        => 'Application\Sonata\UserBundle\Entity\User',
+          'choice_label' => 'username',
+          'disabled' => true))
         ->add('email',    'email')
-        ->add('content',  'text')
+        ->add('content',  'textarea')
         ->add('image', AdminType::class)
         ->add('categories', EntityType::class, array(
           'class'        => 'OCPlatformBundle:Category',
@@ -44,7 +48,7 @@ class AdvertAdmin extends AbstractAdmin
         $datagridMapper
         ->add('title')
         ->add('date')
-        ->add('author')
+        ->add('user')
         ->add('email')
         ->add('content')
         ->add('skill')
@@ -58,7 +62,7 @@ class AdvertAdmin extends AbstractAdmin
     {
         $listMapper->addIdentifier('title');
         $listMapper->addIdentifier('date');
-        $listMapper->addIdentifier('author');
+        $listMapper->addIdentifier('user');
         $listMapper->addIdentifier('email');
         $listMapper->addIdentifier('content');
         $listMapper->addIdentifier('image');
