@@ -23,7 +23,7 @@
         <a href="{{ path('oc_platform_view', {'id': advert.id}) }}">
           {{ advert.title }}
         </a>
-        par {{ advert.author }},
+        par {{ advert.user.username }},
         le {{ advert.date|date('d/m/Y') }}
       </li>
     {% else %}
