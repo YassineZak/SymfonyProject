@@ -1,0 +1,32 @@
+{% extends "OCCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Formulaire de contact - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+{% for message in app.session.flashbag.get('notice') %}
+
+  <div class="alert alert-success" role="alert">
+    {{ message }}
+  </div>
+
+{% endfor %}
+{% for message in app.session.flashbag.get('error') %}
+
+  <div class="alert alert-danger" role="alert">
+    {{ message }}
+  </div>
+
+{% endfor %}
+
+  {{ include("OCCoreBundle:Contact:form.html.twig") }}
+
+  <p>
+    <a href="{{ path('oc_platform_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à l'accueil
+    </a>
+  </p>
+
+{% endblock %}
