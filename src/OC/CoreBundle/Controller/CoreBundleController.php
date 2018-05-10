@@ -32,13 +32,9 @@ class CoreBundleController extends Controller
         'form' => $form->createView(),));
     }
     private function sendEmail($data){
-        $myappContactMail = 'yassine.zakari@hotmail.fr';
-        $myappContactPassword = 'yourmailpassword';
-
-        // In this case we'll use the ZOHO mail services.
-        // If your service is another, then read the following article to know which smpt code to use and which port
-        // http://ourcodeworld.com/articles/read/14/swiftmailer-send-mails-from-php-easily-and-effortlessly
-        $transport = \Swift_SmtpTransport::newInstance('smtp.live.com', 465,'ssl')
+        $myappContactMail = 'yourmail.gmail.com';
+        $myappContactPassword = 'yourpwd';
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')
             ->setUsername($myappContactMail)
             ->setPassword($myappContactPassword);
 
