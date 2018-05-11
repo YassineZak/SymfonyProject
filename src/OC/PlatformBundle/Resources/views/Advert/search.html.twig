@@ -1,0 +1,26 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  recherche - {{ parent() }}
+{% endblock %}
+
+{% block ocplatform_body %}
+
+{% for searchAdvert in searchAdverts %}
+<li>
+  <h2>Liste des annonces trouvées</h2>
+  <a href="{{ path('oc_platform_view', {'id': searchAdvert.id}) }}">
+    {{ searchAdvert.title }}
+  </a>
+  par {{ searchAdvert.user.username }},
+  le {{ searchAdvert.date|date('d/m/Y') }}
+</li>
+{% else %}
+<li>Aucune annonce ne correspond à votre critéres</li>
+{% endfor %}
+
+
+
+{% endblock %}
