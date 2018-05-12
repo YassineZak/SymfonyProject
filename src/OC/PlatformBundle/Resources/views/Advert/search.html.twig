@@ -8,9 +8,9 @@
 
 {% block ocplatform_body %}
 
+<h2>Liste des annonces trouvées</h2>
 {% for searchAdvert in searchAdverts %}
 <li>
-  <h2>Liste des annonces trouvées</h2>
   <a href="{{ path('oc_platform_view', {'id': searchAdvert.id}) }}">
     {{ searchAdvert.title }}
   </a>

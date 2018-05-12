@@ -132,6 +132,26 @@
       <script>
         $('.datepicker').datepicker({language: 'fr'})
       </script>
+      <script type="text/javascript">
+      $(document).ready(function () {
+  'use strict';
+  $('#advert_search_title').autocompleter({
+    url_list: '/search',
+    url_get: '/?term='
+  });
+
+
+  $("#ui-id-1").click(function(){
+    var id = $("#advert_search_title").val();
+
+    if(id.toString().length > 0){
+      $(location).attr('href', '/advert/'+id.toString());
+    }
+  })
+
+});
+      </script>
+
 
     {% endblock %}
 
