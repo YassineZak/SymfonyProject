@@ -52,3 +52,13 @@ oc_platform_application:
         _controller: OCPlatformBundle:Advert:comment
     requirements:
         id: \d+
+
+oc_platform_contact:
+    path:      /contact
+    defaults:
+        _controller: OCPlatformBundle:Advert:contact
+
+oc_platform_search:
+    path:      /search
+    defaults:
+        _controller: OCPlatformBundle:Advert:searchAdverts

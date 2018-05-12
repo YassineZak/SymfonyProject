@@ -7,14 +7,18 @@ use OC\PlatformBundle\Entity\Image;
 use OC\PlatformBundle\Entity\Category;
 use OC\PlatformBundle\Entity\AdvertSkill;
 use OC\PlatformBundle\Entity\Skill;
+use OC\PlatformBundle\Entity\Contact;
 use OC\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use OC\PlatformBundle\Form\AdvertType;
 use OC\PlatformBundle\Form\AdvertEditType;
+use OC\PlatformBundle\Form\AdvertSearchType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use OC\PlatformBundle\Form\ApplicationType;
+use OC\PlatformBundle\Form\ContactType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class AdvertController extends Controller
 {
   public function indexAction($page)
@@ -164,4 +168,39 @@ return $this->render('OCPlatformBundle:Advert:comment.html.twig', array(
   'form' => $form->createView(),
 ));
 }
+
+public function contactAction(Request $request){
+  $contact = new Contact();
+  $form   = $this->get('form.factory')->create(ContactType::class, $contact);
+  if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+  $em = $this->getDoctrine()->getManager();
+  $em->persist($contact);
+  $em->flush();
+  dump($contact);
+  die;
+  $request->getSession()->getFlashBag()->add('alert', "Votre message a bien été transmit");
+  return $this->redirectToRoute('oc_platform_home');
   }
+  else {
+    return $this->render('OCPlatformBundle:Advert:ContactForm.html.twig', array(
+      'form' => $form->createView(),
+    ));
+  }
+}
+public function searchAction()
+{
+    $advert = new  Advert();
+    $form   = $this->get('form.factory')->create(AdvertSearchType::class, $advert);
+    return $this->render('OCPlatformBundle:Advert:searchBar.html.twig', ['form' => $form->createView() ]);
+}
+/**
+ * @param Request $request
+ * @Method("GET")
+ */
+public function searchAdvertsAction(Request $request)
+{
+    $q = $request->query->get("advert_search"); // use "term" instead of "q" for jquery-ui
+    $results = $this->getDoctrine()->getRepository('OCPlatformBundle:Advert')->findLike($q["title"]);
+    return $this->render("OCPlatformBundle:Advert:search.html.twig", ['searchAdverts' => $results]);
+}
+}

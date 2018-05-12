@@ -127,4 +127,21 @@ public function myFindAllDQL()
     ->getResult();
     return $query;
   }
+    /**
+     * @param string $titre
+     *
+     * @return array
+     */
+    public function findLike($title)
+    {
+        return $this
+            ->createQueryBuilder('a')
+            ->where('a.title LIKE :title')
+            ->setParameter( 'title', "%$title%")
+            ->orderBy('a.title')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->execute()
+            ;
+    }
 }

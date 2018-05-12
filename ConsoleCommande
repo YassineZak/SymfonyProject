@@ -18,6 +18,6 @@ php bin/console cache:clear // vider cache
 
 php bin/console debug:container // entity manager
 
-php bin/console doctrine:generate:form OCPlatformBundle:Category // genere un formulaire
+php bin/console doctrine:generate:form OCCoreBundle:Contact // genere un formulaire
 
 php bin/console fos:user:create // permet de crée des users une fois le bundle fosUserBundle installé

@@ -33,6 +33,7 @@ class AppKernel extends Kernel
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\UserBundle\SonataUserBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new PUGX\AutocompleterBundle\PUGXAutocompleterBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
