@@ -1,5 +1,0 @@
-[{% for searchAdvert in searchAdverts -%}
-    {{ {id: searchAdvert.id, label: searchAdvert.title, value: searchAdvert.title}|json_encode|raw }}
-    {# use "value" instead of "id" key, if you use jquery-ui #}
-    {%- if not loop.last %},{% endif -%}
-{%- endfor %}]
