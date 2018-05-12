@@ -199,17 +199,8 @@ public function searchAction()
  */
 public function searchAdvertsAction(Request $request)
 {
-  $advert = new  Advert();
-  $form = $this->createFormBuilder($advert, array(
-  'action' => $this->generateUrl('oc_corebundle_home').'?term=',
-  'method' => 'GET',
-) );
-
-    $q = $request->query->get("term"); // use "term" instead of "q" for jquery-ui
-    dump($q);
-    die;
-    $results = $this->getDoctrine()->getRepository('OCPlatformBundle:Advert')->findLike($q);
-
-    return $this->render("OCPlatformBundle:Advert:search.json.twig", ['searchAdverts' => $results]);
+    $q = $request->query->get("advert_search"); // use "term" instead of "q" for jquery-ui
+    $results = $this->getDoctrine()->getRepository('OCPlatformBundle:Advert')->findLike($q["title"]);
+    return $this->render("OCPlatformBundle:Advert:search.html.twig", ['searchAdverts' => $results]);
 }
 }
