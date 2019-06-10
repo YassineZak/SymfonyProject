@@ -32,7 +32,7 @@
         "patchwork/jsqueeze": "~2.0.5",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "sonata-project/admin-bundle": "~3.35.1",
+        "sonata-project/admin-bundle": "~3.49.0",
         "sonata-project/doctrine-orm-admin-bundle": "^3.3",
         "sonata-project/easy-extends-bundle": "^2.5",
         "sonata-project/formatter-bundle": "^3.4",
